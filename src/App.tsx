@@ -1,45 +1,54 @@
-import { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
+import { useState } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+
+(function () {}) ()
+
+const $ = (query: string): HTMLInputElement | null => document.querySelector(query)
+
+      $("#cadastrar")?.addEventListener("click", () => {
+        const nome = $("#nome")?.value;
+        const placa = $("#placa")?.value;
+
+        if(!nome || !placa) {
+          alert("Os campos nome e placa são obrigatórios!");
+          return
+        }
+      })
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
+      <input
+        type="text"
+        id="nome"
+        placeholder="Digite o nome do veículo"
+        autoComplete="off"
+      />
+      <input
+        type="text"
+        id="placa"
+        placeholder="Digite a placa do veículo"
+        autoComplete="off"
+      />
+
+      <button id="cadastrar">Cadastrar</button>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Placa</th>
+            <th>Entrada</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="patio"></tbody>
+      </table>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
